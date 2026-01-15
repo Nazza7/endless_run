@@ -104,7 +104,7 @@ Coordinare e realizzare l’intero sviluppo di **Endless Runner** ricoprendo tut
 - rischio vs ricompensa (vicino a ostacoli / zone pericolose)
 
 **Documento grafica:**
-- `docs/graphic.md` (linee guida grafica)
+- `graphic.md` (linee guida grafica)
 
 ---
 
@@ -173,8 +173,6 @@ Coordinare e realizzare l’intero sviluppo di **Endless Runner** ricoprendo tut
 
 ### 4.5 Asset & UI (linee guida testuali)
  Per le linee guida della grafica leggere il file graphic.md
-*
-: ostacoli, ground, background, monete, poliziotto
 
 **Asset minimi:**
 - player: `run`, `jump`, `slide`, `dead`
