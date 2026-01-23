@@ -67,15 +67,6 @@ function player.draw()
   if state == "Dead" then
     height = 40
   end
-  if state == "Jumping" then
-    love.graphics.setColor(0.6, 0.9, 1, 1)
-  elseif state == "Sliding" then
-    love.graphics.setColor(0.7, 1, 0.7, 1)
-  elseif state == "Dead" then
-    love.graphics.setColor(0.4, 0.4, 0.4, 1)
-  else
-    love.graphics.setColor(1, 1, 1, 1)
-  end
   love.graphics.rectangle("fill", 80, y - height, width, height)
   love.graphics.setColor(1, 1, 1, 1)
 end
