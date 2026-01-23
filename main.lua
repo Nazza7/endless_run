@@ -54,8 +54,9 @@ function love.update(dt)
 
   score.update(dt, difficulty.get_speed())
 
-  if obstacles.check_collision(player.get_hitbox()) then
+  if obstacles.check_collision(player.get_hitbox(), player.get_state()) then
     if police.on_obstacle_hit() then
+      player.set_dead()
       game_state.set("gameover")
     end
   end
@@ -76,7 +77,13 @@ function love.draw()
   coins.draw()
   player.draw()
   police.draw()
-  hud.draw(score.get_points(), score.get_coins(), police.is_danger())
+  hud.draw(
+    score.get_points(),
+    score.get_coins(),
+    police.is_danger(),
+    police.get_timer(),
+    police.get_duration()
+  )
 
   if game_state.is_gameover() then
     gameover.draw(score.get_points())

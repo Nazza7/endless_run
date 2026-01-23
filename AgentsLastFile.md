@@ -40,7 +40,8 @@ Questo documento definisce **l’unico agente AI** responsabile dello sviluppo d
   - può ricomparire più volte
 
 ### 2.5 Stati del personaggio
-- `Running`, `Jumping`, `Sliding`, `Danger Mode`, `Dead`
+- `Running`, `Jumping`, `Sliding`, `Dead`
+- **Nota:** *Danger Mode* **non** è uno stato del player, ma **uno stato globale** gestito dal sistema polizia (overlay, feedback visivi/audio).
 
 ---
 
@@ -134,10 +135,10 @@ Coordinare e realizzare l’intero sviluppo di **Endless Runner** ricoprendo tut
   - scrolling ground + parallax
 
 **Regole chiave di integrazione velocità:**
-- la velocità influenza:
+- la velocità (pixel/sec) influenza:
   - scorrimento mondo/sfondo
   - velocità ostacoli
-  - calcolo distanza: `distance += speed * dt`
+  - calcolo distanza: `distance += speed * dt` (1 metro = 15px)
 
 
 
@@ -158,8 +159,12 @@ Coordinare e realizzare l’intero sviluppo di **Endless Runner** ricoprendo tut
 - `Running → Jumping` (inizio salto)
 - `Running → Sliding` (inizio slide)
 - ritorno a `Running` a fine salto/slide
-- `Running → Danger Mode` quando entra Danger
-- `Qualsiasi → Dead` a Game Over
+- `Qualsiasi → Dead` a Game Over (blocco input + animazione/pose di “caught”)
+
+**Danger Mode (stato globale):**
+- è gestito da `police.lua`
+- attiva feedback visivi/audio (overlay rosso, sirena, police “near”)
+- non cambia lo stato del player, ma può influenzare UI/FX
 
 **Logica errori:**
 - collisione con ostacolo:
