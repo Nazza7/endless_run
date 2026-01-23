@@ -79,4 +79,8 @@ function player.get_hitbox()
   return { x = 80, y = y - height, w = width, h = height }
 end
 
+function player.get_state()
+  return state
+end
+
 return player

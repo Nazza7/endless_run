@@ -55,11 +55,18 @@ function obstacles.draw()
   love.graphics.setColor(1, 1, 1, 1)
 end
 
-function obstacles.check_collision(hitbox)
+function obstacles.check_collision(hitbox, player_state)
   for _, obstacle in ipairs(list) do
     if collision.aabb(hitbox, obstacle) then
+      if obstacle.kind == "low" and player_state == "Jumping" then
+        goto continue
+      end
+      if obstacle.kind == "high" and player_state == "Sliding" then
+        goto continue
+      end
       return true
     end
+    ::continue::
   end
   return false
 end
