@@ -21,7 +21,16 @@ function player.reset()
   slide_timer = 0
 end
 
+function player.set_dead()
+  state = "Dead"
+  velocity_y = 0
+  slide_timer = 0
+end
+
 function player.handle_input(key)
+  if state == "Dead" then
+    return
+  end
   if (key == "space" or key == "up") and state == "Running" then
     state = "Jumping"
     velocity_y = jump_velocity
@@ -32,6 +41,9 @@ function player.handle_input(key)
 end
 
 function player.update(dt)
+  if state == "Dead" then
+    return
+  end
   if state == "Jumping" then
     velocity_y = velocity_y + gravity * dt
     y = y + velocity_y * dt
@@ -52,12 +64,18 @@ end
 function player.draw()
   local width = 40
   local height = (state == "Sliding") and 30 or 60
+  if state == "Dead" then
+    height = 40
+  end
   love.graphics.rectangle("fill", 80, y - height, width, height)
 end
 
 function player.get_hitbox()
   local width = 40
   local height = (state == "Sliding") and 30 or 60
+  if state == "Dead" then
+    height = 40
+  end
   return { x = 80, y = y - height, w = width, h = height }
 end
 
