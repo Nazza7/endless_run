@@ -77,7 +77,13 @@ function love.draw()
   coins.draw()
   player.draw()
   police.draw()
-  hud.draw(score.get_points(), score.get_coins(), police.is_danger())
+  hud.draw(
+    score.get_points(),
+    score.get_coins(),
+    police.is_danger(),
+    police.get_timer(),
+    police.get_duration()
+  )
 
   if game_state.is_gameover() then
     gameover.draw(score.get_points())
