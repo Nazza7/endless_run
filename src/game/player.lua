@@ -68,6 +68,7 @@ function player.draw()
     height = 40
   end
   love.graphics.rectangle("fill", 80, y - height, width, height)
+  love.graphics.setColor(1, 1, 1, 1)
 end
 
 function player.get_hitbox()
