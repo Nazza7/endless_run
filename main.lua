@@ -56,6 +56,7 @@ function love.update(dt)
 
   if obstacles.check_collision(player.get_hitbox()) then
     if police.on_obstacle_hit() then
+      player.set_dead()
       game_state.set("gameover")
     end
   end
